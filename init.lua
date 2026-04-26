@@ -1,5 +1,5 @@
 --!strict
--- AetherUI Library v3.1 (CoreGui + Drag + Fixed Toggle)
+-- AetherUI Library v3.2 (Fixed Tab Button Clicks)
 -- GitHub: loadstring(game:HttpGet("RAW_LINK"))()
 
 local Players = game:GetService("Players")
@@ -38,7 +38,7 @@ local THEME = {
 	SliderTrack = Color3.fromRGB(61, 61, 61),
 	SliderFill = Color3.fromRGB(0, 123, 255),
 	ToggleOff = Color3.fromRGB(36, 36, 36),
-	ToggleOn = Color3.fromRGB(40, 202, 64), -- ✅ Green when enabled
+	ToggleOn = Color3.fromRGB(40, 202, 64),
 	Accent = {
 		Red = Color3.fromRGB(255, 96, 88),
 		Yellow = Color3.fromRGB(255, 190, 47),
@@ -46,7 +46,7 @@ local THEME = {
 	}
 }
 
--- // Component Builders - EXACT structure from your G2L
+-- // Component Builders
 local Components = {}
 
 function Components:BuildLabel(parent: Frame, title: string): Frame
@@ -311,7 +311,7 @@ function Components:BuildToggle(parent: Frame, title: string, description: strin
 	local switch = createInstance("Frame", toggleContainer, {
 		Name = "Switch",
 		BorderSizePixel = 0,
-		BackgroundColor3 = THEME.ToggleOff, -- ✅ Starts off (gray)
+		BackgroundColor3 = THEME.ToggleOff,
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		Size = UDim2.new(0.085, 0, 0.5, 0),
 		Position = UDim2.new(0.9, 0, 0.5, 0),
@@ -378,11 +378,9 @@ function Components:BuildToggle(parent: Frame, title: string, description: strin
 		Position = UDim2.new(0, 0, 0, 20),
 	})
 	
-	-- ✅ Toggle logic with green background when enabled
 	local enabled = false
 	local function update()
 		circle.Position = enabled and UDim2.new(0.75, 0, 0.5, 0) or UDim2.new(0.25, 0, 0.5, 0)
-		-- ✅ Switch background turns green when enabled
 		switch.BackgroundColor3 = enabled and THEME.ToggleOn or THEME.ToggleOff
 	end
 	
@@ -402,21 +400,19 @@ function Components:BuildToggle(parent: Frame, title: string, description: strin
 	return toggleContainer
 end
 
--- // Window Class with DRAG SYSTEM
+-- // Window Class
 local Window = {}
 Window.__index = Window
 
 function Window.new(title: string, description: string): table
 	local self = setmetatable({}, Window)
 	
-	-- [1] ScreenGui - ✅ Now uses CoreGui
 	local screenGui = createInstance("ScreenGui", CoreGui, {
 		Name = "AetherUI",
 		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
 		Enabled = false,
 	})
 	
-	-- [2] Window Frame - EXACT + drag handle reference
 	local window = createInstance("Frame", screenGui, {
 		Name = "Window",
 		ZIndex = 10,
@@ -430,7 +426,6 @@ function Window.new(title: string, description: string): table
 	createInstance("UICorner", window, { CornerRadius = UDim.new(0.03, 0) })
 	createInstance("UIAspectRatioConstraint", window, { AspectRatio = 1.45 })
 	
-	-- [4] Side Panel - EXACT
 	local side = createInstance("Frame", window, {
 		Name = "Side",
 		ZIndex = 10,
@@ -447,7 +442,6 @@ function Window.new(title: string, description: string): table
 		ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
 	})
 	
-	-- [7] Decor - EXACT
 	local decor = createInstance("Frame", side, {
 		Name = "Decor",
 		ZIndex = 2,
@@ -475,7 +469,6 @@ function Window.new(title: string, description: string): table
 		createInstance("UIAspectRatioConstraint", dot)
 	end
 	
-	-- [11] Tabs Container - EXACT
 	local tabsContainer = createInstance("Frame", side, {
 		Name = "Tabs",
 		ZIndex = 11,
@@ -513,7 +506,6 @@ function Window.new(title: string, description: string): table
 		Position = UDim2.new(0.5, 0, 0.5, 0),
 	})
 	
-	-- [1c] Main Content - EXACT
 	local main = createInstance("Frame", window, {
 		Name = "Main",
 		ZIndex = 10,
@@ -526,7 +518,6 @@ function Window.new(title: string, description: string): table
 	})
 	createInstance("UICorner", main, { CornerRadius = UDim.new(0.01, 25) })
 	
-	-- [1e] Labels Header - EXACT + DRAG HANDLE
 	local labels = createInstance("Frame", main, {
 		Name = "Labels",
 		ZIndex = 2,
@@ -576,7 +567,6 @@ function Window.new(title: string, description: string): table
 		ItemLineAlignment = Enum.ItemLineAlignment.Start,
 	})
 	
-	-- [22] ScrollingFrame - EXACT
 	local scrollingFrame = createInstance("ScrollingFrame", main, {
 		BorderSizePixel = 0,
 		CanvasSize = UDim2.new(0, 0, 0, 500),
@@ -598,7 +588,7 @@ function Window.new(title: string, description: string): table
 		SortOrder = Enum.SortOrder.LayoutOrder,
 	})
 	
-	-- ✅ DRAG SYSTEM: Make title bar draggable
+	-- ✅ DRAG SYSTEM
 	local dragging = false
 	local dragStart = nil
 	local startPos = nil
@@ -631,7 +621,6 @@ function Window.new(title: string, description: string): table
 		end
 	end)
 	
-	-- Store references
 	self._gui = screenGui
 	self._window = window
 	self._tabsContainer = tabsContainer
@@ -642,6 +631,7 @@ function Window.new(title: string, description: string): table
 	return self
 end
 
+-- ✅ FIXED: AddTab now returns the nested Button for click events
 function Window:AddTab(name: string, iconId: string?): table
 	local tabBtn = createInstance("Frame", self._tabsContainer, {
 		Name = "Tab",
@@ -654,7 +644,8 @@ function Window:AddTab(name: string, iconId: string?): table
 	})
 	createInstance("UICorner", tabBtn, { CornerRadius = UDim.new(0.3, 0) })
 	
-	createInstance("TextButton", tabBtn, {
+	-- ✅ This is the nested Button that receives clicks (matches your G2L)
+	local tabButton = createInstance("TextButton", tabBtn, {
 		Name = "Button",
 		BorderSizePixel = 0,
 		TextXAlignment = Enum.TextXAlignment.Left,
@@ -712,10 +703,17 @@ function Window:AddTab(name: string, iconId: string?): table
 		SortOrder = Enum.SortOrder.LayoutOrder,
 	})
 	
-	local tab = { Name = name, Container = content, Button = tabBtn }
+	-- ✅ Return the nested Button so you can connect to MouseButton1Click
+	local tab = { 
+		Name = name, 
+		Container = content, 
+		TabFrame = tabBtn,
+		Button = tabButton,  -- ✅ This is Tabs.Tab.Button
+	}
 	table.insert(self._tabs, tab)
 	
-	tabBtn.MouseButton1Click:Connect(function()
+	-- ✅ Connect to the nested Button's MouseButton1Click (exact G2L structure)
+	tabButton.MouseButton1Click:Connect(function()
 		for _, t in ipairs(self._tabs) do
 			t.Container.Visible = (t == tab)
 		end
@@ -723,10 +721,7 @@ function Window:AddTab(name: string, iconId: string?): table
 	end)
 	
 	if #self._tabs == 1 then
-		task.defer(function() 
-			local btn = tabBtn:FindFirstChild("Button")
-			if btn and btn:IsA("TextButton") then btn:FireMouseButton1Click() end 
-		end)
+		task.defer(function() tabButton:FireMouseButton1Click() end)
 	end
 	
 	return tab
@@ -758,7 +753,6 @@ end
 function Window:Show() 
 	if self._gui then 
 		self._gui.Enabled = true 
-		-- Reset position to center when showing
 		self._window.Position = UDim2.new(0.5, 0, 0.5, 0)
 	end 
 end
@@ -772,7 +766,7 @@ function Window:Destroy()
 end
 
 -- // Library Export
-local Library = { _version = "3.1" }
+local Library = { _version = "3.2" }
 
 function Library:CreateWindow(title: string, description: string): table
 	return Window.new(title, description)
