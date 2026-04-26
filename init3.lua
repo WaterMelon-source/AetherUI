@@ -1,6 +1,5 @@
 --!strict
--- AetherUI Library v3.3 (Fixed FireMouseButton1Click Error)
--- GitHub: loadstring(game:HttpGet("RAW_LINK"))()
+-- AetherUI Library v3.4 (Fixed Drag & Tab Visuals)
 
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
@@ -388,7 +387,7 @@ function Window.new(title: string, description: string): table
 		BackgroundTransparency = 1,
 	})
 	
-	local titleLabel = createInstance("TextLabel", labels, {
+	createInstance("TextLabel", labels, {
 		Name = "1Title", TextWrapped = true, ZIndex = 2, TextSize = 14,
 		TextXAlignment = Enum.TextXAlignment.Left, TextScaled = true,
 		FontFace = getFont(FONT_PATH, Enum.FontWeight.Bold, Enum.FontStyle.Normal),
@@ -427,34 +426,29 @@ function Window.new(title: string, description: string): table
 		Padding = UDim.new(0.02, 0), SortOrder = Enum.SortOrder.LayoutOrder,
 	})
 	
-	-- ✅ DRAG SYSTEM
+	-- ✅ DRAG SYSTEM: Attached to entire Window Frame
 	local dragging = false
 	local dragStart = nil
 	local startPos = nil
 	
-	local function updateDrag(input: InputObject)
-		if dragging and dragStart and startPos then
-			local delta = input.Position - dragStart
-			local newX = startPos.X.Offset + delta.X
-			local newY = startPos.Y.Offset + delta.Y
-			window.Position = UDim2.new(0.5, newX, 0.5, newY)
-		end
-	end
-	
-	titleLabel.InputBegan:Connect(function(input: InputObject)
+	window.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			dragging = true
 			dragStart = input.Position
 			startPos = window.Position
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then dragging = false end
-			end)
 		end
 	end)
 	
-	UserInputService.InputChanged:Connect(function(input: InputObject)
+	window.InputEnded:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = false
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
 		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-			updateDrag(input)
+			local delta = input.Position - dragStart
+			window.Position = UDim2.new(0.5, startPos.X.Offset + delta.X, 0.5, startPos.Y.Offset + delta.Y)
 		end
 	end)
 	
@@ -468,12 +462,13 @@ function Window.new(title: string, description: string): table
 	return self
 end
 
--- ✅ FIXED: Removed invalid FireMouseButton1Click
+-- ✅ FIXED: Tab visual switch + content switch
 function Window:AddTab(name: string, iconId: string?): table
 	local tabBtn = createInstance("Frame", self._tabsContainer, {
 		Name = "Tab", BorderSizePixel = 0, BackgroundColor3 = THEME.TabBackground,
 		AnchorPoint = Vector2.new(0.5, 0.5), Size = UDim2.new(1, 0, 0.075, 0),
 		Position = UDim2.new(0.5, 0, 0.5, 0), BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BackgroundTransparency = 1, -- Start transparent (unselected)
 	})
 	createInstance("UICorner", tabBtn, { CornerRadius = UDim.new(0.3, 0) })
 	
@@ -516,16 +511,20 @@ function Window:AddTab(name: string, iconId: string?): table
 	local tab = { Name = name, Container = content, TabFrame = tabBtn, Button = tabButton }
 	table.insert(self._tabs, tab)
 	
+	-- ✅ Tab switching logic
 	tabButton.MouseButton1Click:Connect(function()
 		for _, t in ipairs(self._tabs) do
-			t.Container.Visible = (t == tab)
+			local isSelected = (t == tab)
+			t.Container.Visible = isSelected
+			t.TabFrame.BackgroundTransparency = isSelected and 0 or 1
 		end
 		self._currentTab = tab
 	end)
 	
-	-- ✅ Auto-select first tab (direct state set, no fake click)
+	-- ✅ Auto-select first tab
 	if #self._tabs == 1 then
 		tab.Container.Visible = true
+		tab.TabFrame.BackgroundTransparency = 0
 		self._currentTab = tab
 	end
 	
@@ -565,7 +564,7 @@ function Window:Destroy()
 	if self._gui then self._gui:Destroy() end 
 end
 
-local Library = { _version = "3.3" }
+local Library = { _version = "3.4" }
 function Library:CreateWindow(title: string, description: string): table
 	return Window.new(title, description)
 end
