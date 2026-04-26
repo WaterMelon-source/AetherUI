@@ -1,5 +1,5 @@
 --!strict
--- AetherUI Library v4.0 (New G2L Exact Match + Fixes)
+-- AetherUI Library v4.1 (Fixed Tab Size + Drag Frame Only)
 
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
@@ -414,6 +414,43 @@ function Window.new(title: string, description: string): table
 	createInstance("UICorner", window, { CornerRadius = UDim.new(0.03, 0) })
 	createInstance("UIAspectRatioConstraint", window, { AspectRatio = 1.45 })
 	
+	-- ✅ NEW: Drag Frame (EXACT G2L MATCH) - Only this frame handles dragging
+	local dragFrame = createInstance("Frame", window, {
+		Name = "Drag",
+		ZIndex = 10,
+		BorderSizePixel = 0,
+		BackgroundColor3 = Color3.fromRGB(36, 36, 36),
+		AnchorPoint = Vector2.new(0.5, 0.5),
+		Size = UDim2.new(1.00005, 0, 0.1256, 0),
+		Position = UDim2.new(0.49997, 0, 0.06201, 0),
+		BackgroundTransparency = 1,
+	})
+	
+	-- ✅ DRAG SYSTEM: Attached ONLY to Drag frame
+	local dragging = false
+	local dragStart = nil
+	local startPos = nil
+	
+	dragFrame.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = true
+			dragStart = input.Position
+			startPos = window.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+			local delta = input.Position - dragStart
+			window.Position = UDim2.new(0.5, startPos.X.Offset + delta.X, 0.5, startPos.Y.Offset + delta.Y)
+		end
+	end)
+	
 	local side = createInstance("Frame", window, {
 		Name = "Side",
 		ZIndex = 10,
@@ -576,34 +613,9 @@ function Window.new(title: string, description: string): table
 		SortOrder = Enum.SortOrder.LayoutOrder,
 	})
 	
-	-- ✅ DRAG SYSTEM: Attached to entire Window Frame
-	local dragging = false
-	local dragStart = nil
-	local startPos = nil
-	
-	window.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = true
-			dragStart = input.Position
-			startPos = window.Position
-		end
-	end)
-	
-	window.InputEnded:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = false
-		end
-	end)
-	
-	UserInputService.InputChanged:Connect(function(input)
-		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-			local delta = input.Position - dragStart
-			window.Position = UDim2.new(0.5, startPos.X.Offset + delta.X, 0.5, startPos.Y.Offset + delta.Y)
-		end
-	end)
-	
 	self._gui = screenGui
 	self._window = window
+	self._dragFrame = dragFrame  -- Store reference
 	self._tabsContainer = tabsContainer
 	self._scrollingFrame = scrollingFrame
 	self._tabs = {}
@@ -612,7 +624,7 @@ function Window.new(title: string, description: string): table
 	return self
 end
 
--- ✅ FIXED: Tab with default icon + proper button structure
+-- ✅ FIXED: Tab content Size = {1, 0}, {1, 0} + default icon
 function Window:AddTab(name: string, iconId: string?): table
 	local tabBtn = createInstance("Frame", self._tabsContainer, {
 		Name = "Tab",
@@ -626,7 +638,6 @@ function Window:AddTab(name: string, iconId: string?): table
 	})
 	createInstance("UICorner", tabBtn, { CornerRadius = UDim.new(0.3, 0) })
 	
-	-- ✅ NEW G2L: Button fills entire tab, centered
 	local tabButton = createInstance("TextButton", tabBtn, {
 		Name = "Button",
 		BorderSizePixel = 0,
@@ -638,13 +649,12 @@ function Window:AddTab(name: string, iconId: string?): table
 		ZIndex = 5,
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		BackgroundTransparency = 1,
-		Size = UDim2.new(1, 0, 1, 0),  -- ✅ Full size
+		Size = UDim2.new(1, 0, 1, 0),
 		Text = "",
-		Position = UDim2.new(0.5, 0, 0.5, 0),  -- ✅ Centered
+		Position = UDim2.new(0.5, 0, 0.5, 0),
 		AutoButtonColor = false,
 	})
 	
-	-- ✅ DEFAULT ICON if none provided
 	local iconAsset = iconId and ("rbxassetid://" .. tostring(iconId):gsub("[^%d]", "")) or DEFAULT_ICON
 	local icon = createInstance("ImageLabel", tabBtn, {
 		Name = "Icon",
@@ -671,14 +681,14 @@ function Window:AddTab(name: string, iconId: string?): table
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		Size = UDim2.new(0.55, 0, 0.55, 0),
 		Text = name,
-		Position = UDim2.new(0.49, 0, 0.5, 0),  -- ✅ Matches G2L
+		Position = UDim2.new(0.49, 0, 0.5, 0),
 	})
 	
-	-- ✅ Content container parents to scrollingFrame
+	-- ✅ FIXED: Content Size = {1, 0}, {1, 0} so it's fully visible
 	local content = createInstance("Frame", self._scrollingFrame, {
 		Name = name .. "_Content",
 		BackgroundTransparency = 1,
-		Size = UDim2.new(1, 0, 0, 0),
+		Size = UDim2.new(1, 0, 1, 0),  -- ✅ Height = 1 (full)
 		Visible = false,
 	})
 	createInstance("UIListLayout", content, {
@@ -689,7 +699,6 @@ function Window:AddTab(name: string, iconId: string?): table
 	local tab = { Name = name, Container = content, TabFrame = tabBtn, Button = tabButton }
 	table.insert(self._tabs, tab)
 	
-	-- ✅ Tab switching logic
 	tabButton.MouseButton1Click:Connect(function()
 		for _, t in ipairs(self._tabs) do
 			local isSelected = (t == tab)
@@ -699,7 +708,6 @@ function Window:AddTab(name: string, iconId: string?): table
 		self._currentTab = tab
 	end)
 	
-	-- ✅ Auto-select first tab
 	if #self._tabs == 1 then
 		tab.Container.Visible = true
 		tab.TabFrame.BackgroundTransparency = 0
@@ -713,7 +721,7 @@ function Window:_getTarget(): Frame
 	if self._currentTab and self._currentTab.Container.Visible then
 		return self._currentTab.Container
 	end
-	return self._scrollingFrame  -- ✅ Fallback to main scrolling frame
+	return self._scrollingFrame
 end
 
 function Window:AddLabel(title: string): Frame
@@ -742,7 +750,7 @@ function Window:Destroy()
 	if self._gui then self._gui:Destroy() end 
 end
 
-local Library = { _version = "4.0" }
+local Library = { _version = "4.1" }
 function Library:CreateWindow(title: string, description: string): table
 	return Window.new(title, description)
 end
