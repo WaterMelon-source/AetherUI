@@ -5,7 +5,6 @@ G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:Wait
 G2L["1"]["Name"] = [[AetherUI]];
 G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 
-
 -- StarterGui.AetherUI.Window
 G2L["2"] = Instance.new("Frame", G2L["1"]);
 G2L["2"]["ZIndex"] = 10;
@@ -17,11 +16,9 @@ G2L["2"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 G2L["2"]["Name"] = [[Window]];
 G2L["2"]["BackgroundTransparency"] = 0.1;
 
-
 -- StarterGui.AetherUI.Window.UICorner
 G2L["3"] = Instance.new("UICorner", G2L["2"]);
 G2L["3"]["CornerRadius"] = UDim.new(0.03, 0);
-
 
 -- StarterGui.AetherUI.Window.Side
 G2L["4"] = Instance.new("Frame", G2L["2"]);
@@ -34,17 +31,14 @@ G2L["4"]["Position"] = UDim2.new(0.14, 0, 0.5, 0);
 G2L["4"]["Name"] = [[Side]];
 G2L["4"]["BackgroundTransparency"] = 0.25;
 
-
 -- StarterGui.AetherUI.Window.Side.UICorner
 G2L["5"] = Instance.new("UICorner", G2L["4"]);
 G2L["5"]["CornerRadius"] = UDim.new(0.05, 0);
-
 
 -- StarterGui.AetherUI.Window.Side.UIStroke
 G2L["6"] = Instance.new("UIStroke", G2L["4"]);
 G2L["6"]["Color"] = Color3.fromRGB(51, 51, 51);
 G2L["6"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-
 
 -- StarterGui.AetherUI.Window.Side.Decor
 G2L["7"] = Instance.new("Frame", G2L["4"]);
@@ -55,7 +49,6 @@ G2L["7"]["Position"] = UDim2.new(0.18, 0, 0.04, 0);
 G2L["7"]["Name"] = [[Decor]];
 G2L["7"]["BackgroundTransparency"] = 1;
 
-
 -- StarterGui.AetherUI.Window.Side.Decor.Red
 G2L["8"] = Instance.new("Frame", G2L["7"]);
 G2L["8"]["BorderSizePixel"] = 0;
@@ -65,16 +58,12 @@ G2L["8"]["Size"] = UDim2.new(1, 0, 1, 0);
 G2L["8"]["Position"] = UDim2.new(0, 0, 0.5, 0);
 G2L["8"]["Name"] = [[Red]];
 
-
 -- StarterGui.AetherUI.Window.Side.Decor.Red.UICorner
 G2L["9"] = Instance.new("UICorner", G2L["8"]);
 G2L["9"]["CornerRadius"] = UDim.new(1, 0);
 
-
 -- StarterGui.AetherUI.Window.Side.Decor.Red.UIAspectRatioConstraint
 G2L["a"] = Instance.new("UIAspectRatioConstraint", G2L["8"]);
-
-
 
 -- StarterGui.AetherUI.Window.Side.Decor.Yellow
 G2L["b"] = Instance.new("Frame", G2L["7"]);
@@ -85,16 +74,12 @@ G2L["b"]["Size"] = UDim2.new(1, 0, 1, 0);
 G2L["b"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 G2L["b"]["Name"] = [[Yellow]];
 
-
 -- StarterGui.AetherUI.Window.Side.Decor.Yellow.UICorner
 G2L["c"] = Instance.new("UICorner", G2L["b"]);
 G2L["c"]["CornerRadius"] = UDim.new(1, 0);
 
-
 -- StarterGui.AetherUI.Window.Side.Decor.Yellow.UIAspectRatioConstraint
 G2L["d"] = Instance.new("UIAspectRatioConstraint", G2L["b"]);
-
-
 
 -- StarterGui.AetherUI.Window.Side.Decor.Green
 G2L["e"] = Instance.new("Frame", G2L["7"]);
@@ -105,16 +90,12 @@ G2L["e"]["Size"] = UDim2.new(1, 0, 1, 0);
 G2L["e"]["Position"] = UDim2.new(1, 0, 0.5, 0);
 G2L["e"]["Name"] = [[Green]];
 
-
 -- StarterGui.AetherUI.Window.Side.Decor.Green.UICorner
 G2L["f"] = Instance.new("UICorner", G2L["e"]);
 G2L["f"]["CornerRadius"] = UDim.new(1, 0);
 
-
 -- StarterGui.AetherUI.Window.Side.Decor.Green.UIAspectRatioConstraint
 G2L["10"] = Instance.new("UIAspectRatioConstraint", G2L["e"]);
-
-
 
 -- StarterGui.AetherUI.Window.Side.Tabs
 G2L["11"] = Instance.new("Frame", G2L["4"]);
@@ -127,17 +108,14 @@ G2L["11"]["Position"] = UDim2.new(0.5, 0, 0.53, 0);
 G2L["11"]["Name"] = [[Tabs]];
 G2L["11"]["BackgroundTransparency"] = 1;
 
-
 -- StarterGui.AetherUI.Window.Side.Tabs.UICorner
 G2L["12"] = Instance.new("UICorner", G2L["11"]);
 G2L["12"]["CornerRadius"] = UDim.new(0, 10);
-
 
 -- StarterGui.AetherUI.Window.Side.Tabs.UIListLayout
 G2L["13"] = Instance.new("UIListLayout", G2L["11"]);
 G2L["13"]["Padding"] = UDim.new(0, 10);
 G2L["13"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
-
 
 -- StarterGui.AetherUI.Window.Side.Tabs.Category
 G2L["14"] = Instance.new("TextLabel", G2L["11"]);
@@ -154,14 +132,12 @@ G2L["14"]["Text"] = [[Category]];
 G2L["14"]["Name"] = [[Category]];
 G2L["14"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Side.Tabs.UIPadding
 G2L["15"] = Instance.new("UIPadding", G2L["11"]);
 G2L["15"]["PaddingTop"] = UDim.new(0, 10);
 G2L["15"]["PaddingRight"] = UDim.new(0, 5);
 G2L["15"]["PaddingLeft"] = UDim.new(0, 5);
 G2L["15"]["PaddingBottom"] = UDim.new(0, 10);
-
 
 -- StarterGui.AetherUI.Window.Side.Tabs.Tab
 G2L["16"] = Instance.new("Frame", G2L["11"]);
@@ -172,7 +148,6 @@ G2L["16"]["Size"] = UDim2.new(1, 0, 0.075, 0);
 G2L["16"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 G2L["16"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["16"]["Name"] = [[Tab]];
-
 
 -- StarterGui.AetherUI.Window.Side.Tabs.Tab.Button
 G2L["17"] = Instance.new("TextButton", G2L["16"]);
@@ -190,7 +165,6 @@ G2L["17"]["Text"] = [[]];
 G2L["17"]["Name"] = [[Button]];
 G2L["17"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Side.Tabs.Tab.Title
 G2L["18"] = Instance.new("TextLabel", G2L["16"]);
 G2L["18"]["TextWrapped"] = true;
@@ -206,7 +180,6 @@ G2L["18"]["Text"] = [[Tab Example]];
 G2L["18"]["Name"] = [[Title]];
 G2L["18"]["Position"] = UDim2.new(0.49, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Side.Tabs.Tab.Icon
 G2L["19"] = Instance.new("ImageLabel", G2L["16"]);
 G2L["19"]["BorderSizePixel"] = 0;
@@ -221,16 +194,12 @@ G2L["19"]["ImageRectOffset"] = Vector2.new(578, 330);
 G2L["19"]["Name"] = [[Icon]];
 G2L["19"]["Position"] = UDim2.new(0.12, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Side.Tabs.Tab.Icon.UIAspectRatioConstraint
 G2L["1a"] = Instance.new("UIAspectRatioConstraint", G2L["19"]);
-
-
 
 -- StarterGui.AetherUI.Window.Side.Tabs.Tab.UICorner
 G2L["1b"] = Instance.new("UICorner", G2L["16"]);
 G2L["1b"]["CornerRadius"] = UDim.new(0.3, 0);
-
 
 -- StarterGui.AetherUI.Window.Main
 G2L["1c"] = Instance.new("Frame", G2L["2"]);
@@ -243,11 +212,9 @@ G2L["1c"]["Position"] = UDim2.new(0.63137, 0, 0.4994, 0);
 G2L["1c"]["Name"] = [[Main]];
 G2L["1c"]["BackgroundTransparency"] = 1;
 
-
 -- StarterGui.AetherUI.Window.Main.UICorner
 G2L["1d"] = Instance.new("UICorner", G2L["1c"]);
 G2L["1d"]["CornerRadius"] = UDim.new(0.01, 25);
-
 
 -- StarterGui.AetherUI.Window.Main.Labels
 G2L["1e"] = Instance.new("Frame", G2L["1c"]);
@@ -257,7 +224,6 @@ G2L["1e"]["Size"] = UDim2.new(0.9, 0, 0.075, 0);
 G2L["1e"]["Position"] = UDim2.new(0.5, 0, 0.05, 0);
 G2L["1e"]["Name"] = [[Labels]];
 G2L["1e"]["BackgroundTransparency"] = 1;
-
 
 -- StarterGui.AetherUI.Window.Main.Labels.1Title
 G2L["1f"] = Instance.new("TextLabel", G2L["1e"]);
@@ -275,7 +241,6 @@ G2L["1f"]["Text"] = [[Example]];
 G2L["1f"]["Name"] = [[1Title]];
 G2L["1f"]["Position"] = UDim2.new(0.5, 0, 0.25, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.Labels.UIListLayout
 G2L["20"] = Instance.new("UIListLayout", G2L["1e"]);
 G2L["20"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center;
@@ -283,7 +248,6 @@ G2L["20"]["Padding"] = UDim.new(0.1, 0);
 G2L["20"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
 G2L["20"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
 G2L["20"]["ItemLineAlignment"] = Enum.ItemLineAlignment.Start;
-
 
 -- StarterGui.AetherUI.Window.Main.Labels.2Description
 G2L["21"] = Instance.new("TextLabel", G2L["1e"]);
@@ -301,7 +265,6 @@ G2L["21"]["Text"] = [[Lorem ipsum dolor sit amet]];
 G2L["21"]["Name"] = [[2Description]];
 G2L["21"]["Position"] = UDim2.new(0.14805, 0, 0.9, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame
 G2L["22"] = Instance.new("ScrollingFrame", G2L["1c"]);
 G2L["22"]["BorderSizePixel"] = 0;
@@ -313,24 +276,20 @@ G2L["22"]["Position"] = UDim2.new(0.53623, 0, 0.54276, 0);
 G2L["22"]["ScrollBarThickness"] = 4;
 G2L["22"]["BackgroundTransparency"] = 1;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.UIListLayout
 G2L["23"] = Instance.new("UIListLayout", G2L["22"]);
 G2L["23"]["Padding"] = UDim.new(0.02, 0);
 G2L["23"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.UIAspectRatioConstraint
 G2L["24"] = Instance.new("UIAspectRatioConstraint", G2L["22"]);
 G2L["24"]["AspectRatio"] = 1.23;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.UIPadding
 G2L["25"] = Instance.new("UIPadding", G2L["22"]);
 G2L["25"]["PaddingTop"] = UDim.new(0.025, 0);
 G2L["25"]["PaddingRight"] = UDim.new(0.05, 0);
 G2L["25"]["PaddingBottom"] = UDim.new(0.1, 0);
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Label
 G2L["26"] = Instance.new("Frame", G2L["22"]);
@@ -340,7 +299,6 @@ G2L["26"]["Position"] = UDim2.new(0.17018, 0, 0.5, 0);
 G2L["26"]["Name"] = [[Label]];
 G2L["26"]["BackgroundTransparency"] = 1;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Label.UIListLayout
 G2L["27"] = Instance.new("UIListLayout", G2L["26"]);
 G2L["27"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center;
@@ -348,7 +306,6 @@ G2L["27"]["Padding"] = UDim.new(0.01, 0);
 G2L["27"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
 G2L["27"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
 G2L["27"]["ItemLineAlignment"] = Enum.ItemLineAlignment.Start;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Label.Title
 G2L["28"] = Instance.new("TextLabel", G2L["26"]);
@@ -363,11 +320,9 @@ G2L["28"]["Size"] = UDim2.new(1, 0, 0.5, 0);
 G2L["28"]["Text"] = [[Example]];
 G2L["28"]["Name"] = [[Title]];
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Label.UIAspectRatioConstraint
 G2L["29"] = Instance.new("UIAspectRatioConstraint", G2L["26"]);
 G2L["29"]["AspectRatio"] = 4;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button
 G2L["2a"] = Instance.new("Frame", G2L["22"]);
@@ -377,14 +332,12 @@ G2L["2a"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 G2L["2a"]["Name"] = [[Button]];
 G2L["2a"]["BackgroundTransparency"] = 1;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Frame
 G2L["2b"] = Instance.new("Frame", G2L["2a"]);
 G2L["2b"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 G2L["2b"]["Size"] = UDim2.new(0.34036, 0, 1, 0);
 G2L["2b"]["Position"] = UDim2.new(0.17018, 0, 0.5, 0);
 G2L["2b"]["BackgroundTransparency"] = 1;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Frame.UIListLayout
 G2L["2c"] = Instance.new("UIListLayout", G2L["2b"]);
@@ -393,7 +346,6 @@ G2L["2c"]["Padding"] = UDim.new(0.01, 0);
 G2L["2c"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
 G2L["2c"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
 G2L["2c"]["ItemLineAlignment"] = Enum.ItemLineAlignment.Start;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Frame.1Title
 G2L["2d"] = Instance.new("TextLabel", G2L["2b"]);
@@ -407,7 +359,6 @@ G2L["2d"]["BackgroundTransparency"] = 1;
 G2L["2d"]["Size"] = UDim2.new(1, 0, 0.32, 0);
 G2L["2d"]["Text"] = [[Example]];
 G2L["2d"]["Name"] = [[1Title]];
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Frame.2Description
 G2L["2e"] = Instance.new("TextLabel", G2L["2b"]);
@@ -423,11 +374,9 @@ G2L["2e"]["Text"] = [[Lorem ipsum dolor sit amet]];
 G2L["2e"]["Name"] = [[2Description]];
 G2L["2e"]["Position"] = UDim2.new(0, 0, 0, 20);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Frame.UIAspectRatioConstraint
 G2L["2f"] = Instance.new("UIAspectRatioConstraint", G2L["2b"]);
 G2L["2f"]["AspectRatio"] = 4;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Button
 G2L["30"] = Instance.new("TextButton", G2L["2a"]);
@@ -445,11 +394,9 @@ G2L["30"]["Text"] = [[]];
 G2L["30"]["Name"] = [[Button]];
 G2L["30"]["Position"] = UDim2.new(0.9, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Button.UICorner
 G2L["31"] = Instance.new("UICorner", G2L["30"]);
 G2L["31"]["CornerRadius"] = UDim.new(0, 4);
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Button.Text
 G2L["32"] = Instance.new("TextLabel", G2L["30"]);
@@ -465,23 +412,19 @@ G2L["32"]["Text"] = [[Button]];
 G2L["32"]["Name"] = [[Text]];
 G2L["32"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Button.UIStroke
 G2L["33"] = Instance.new("UIStroke", G2L["30"]);
 G2L["33"]["Thickness"] = 1.6;
 G2L["33"]["Color"] = Color3.fromRGB(51, 51, 51);
 G2L["33"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.Button.UIAspectRatioConstraint
 G2L["34"] = Instance.new("UIAspectRatioConstraint", G2L["30"]);
 G2L["34"]["AspectRatio"] = 1.8;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Button.UIAspectRatioConstraint
 G2L["35"] = Instance.new("UIAspectRatioConstraint", G2L["2a"]);
 G2L["35"]["AspectRatio"] = 11;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider
 G2L["36"] = Instance.new("Frame", G2L["22"]);
@@ -490,7 +433,6 @@ G2L["36"]["Size"] = UDim2.new(1, 0, 0.1, 0);
 G2L["36"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 G2L["36"]["Name"] = [[Slider]];
 G2L["36"]["BackgroundTransparency"] = 1;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Slider
 G2L["37"] = Instance.new("Frame", G2L["36"]);
@@ -501,11 +443,9 @@ G2L["37"]["Size"] = UDim2.new(0.1754, 0, 0.1, 0);
 G2L["37"]["Position"] = UDim2.new(0.9, 0, 0.5, 0);
 G2L["37"]["Name"] = [[Slider]];
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Slider.UICorner
 G2L["38"] = Instance.new("UICorner", G2L["37"]);
 G2L["38"]["CornerRadius"] = UDim.new(1, 0);
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Slider.Value
 G2L["39"] = Instance.new("Frame", G2L["37"]);
@@ -514,11 +454,9 @@ G2L["39"]["BackgroundColor3"] = Color3.fromRGB(0, 123, 255);
 G2L["39"]["Size"] = UDim2.new(0, 0, 1, 0);
 G2L["39"]["Name"] = [[Value]];
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Slider.Value.UICorner
 G2L["3a"] = Instance.new("UICorner", G2L["39"]);
 G2L["3a"]["CornerRadius"] = UDim.new(1, 0);
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Slider.Circle
 G2L["3b"] = Instance.new("Frame", G2L["37"]);
@@ -529,16 +467,12 @@ G2L["3b"]["Size"] = UDim2.new(2.5, 0, 2.5, 0);
 G2L["3b"]["Position"] = UDim2.new(0, 0, 0.5, 0);
 G2L["3b"]["Name"] = [[Circle]];
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Slider.Circle.UICorner
 G2L["3c"] = Instance.new("UICorner", G2L["3b"]);
 G2L["3c"]["CornerRadius"] = UDim.new(1, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Slider.Circle.UIAspectRatioConstraint
 G2L["3d"] = Instance.new("UIAspectRatioConstraint", G2L["3b"]);
-
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Slider.UIStroke
 G2L["3e"] = Instance.new("UIStroke", G2L["37"]);
@@ -546,11 +480,9 @@ G2L["3e"]["Thickness"] = 1.6;
 G2L["3e"]["Color"] = Color3.fromRGB(51, 51, 51);
 G2L["3e"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Slider.UIAspectRatioConstraint
 G2L["3f"] = Instance.new("UIAspectRatioConstraint", G2L["37"]);
 G2L["3f"]["AspectRatio"] = 16;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Frame
 G2L["40"] = Instance.new("Frame", G2L["36"]);
@@ -558,7 +490,6 @@ G2L["40"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 G2L["40"]["Size"] = UDim2.new(0.34036, 0, 1, 0);
 G2L["40"]["Position"] = UDim2.new(0.17018, 0, 0.5, 0);
 G2L["40"]["BackgroundTransparency"] = 1;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Frame.UIListLayout
 G2L["41"] = Instance.new("UIListLayout", G2L["40"]);
@@ -568,11 +499,9 @@ G2L["41"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
 G2L["41"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
 G2L["41"]["ItemLineAlignment"] = Enum.ItemLineAlignment.Start;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Frame.UIAspectRatioConstraint
 G2L["42"] = Instance.new("UIAspectRatioConstraint", G2L["40"]);
 G2L["42"]["AspectRatio"] = 4;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Frame.1Title
 G2L["43"] = Instance.new("TextLabel", G2L["40"]);
@@ -586,7 +515,6 @@ G2L["43"]["BackgroundTransparency"] = 1;
 G2L["43"]["Size"] = UDim2.new(1, 0, 0.32, 0);
 G2L["43"]["Text"] = [[Example]];
 G2L["43"]["Name"] = [[1Title]];
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.Frame.2Description
 G2L["44"] = Instance.new("TextLabel", G2L["40"]);
@@ -602,11 +530,9 @@ G2L["44"]["Text"] = [[Lorem ipsum dolor sit amet]];
 G2L["44"]["Name"] = [[2Description]];
 G2L["44"]["Position"] = UDim2.new(0, 0, 0, 20);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Slider.UIAspectRatioConstraint
 G2L["45"] = Instance.new("UIAspectRatioConstraint", G2L["36"]);
 G2L["45"]["AspectRatio"] = 11;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle
 G2L["46"] = Instance.new("Frame", G2L["22"]);
@@ -615,7 +541,6 @@ G2L["46"]["Size"] = UDim2.new(1, 0, 0.1, 0);
 G2L["46"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 G2L["46"]["Name"] = [[Toggle]];
 G2L["46"]["BackgroundTransparency"] = 1;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Switch
 G2L["47"] = Instance.new("Frame", G2L["46"]);
@@ -626,11 +551,9 @@ G2L["47"]["Size"] = UDim2.new(0.085, 0, 0.5, 0);
 G2L["47"]["Position"] = UDim2.new(0.9, 0, 0.5, 0);
 G2L["47"]["Name"] = [[Switch]];
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Switch.UICorner
 G2L["48"] = Instance.new("UICorner", G2L["47"]);
 G2L["48"]["CornerRadius"] = UDim.new(1, 0);
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Switch.Circle
 G2L["49"] = Instance.new("Frame", G2L["47"]);
@@ -641,16 +564,12 @@ G2L["49"]["Size"] = UDim2.new(0.7, 0, 0.7, 0);
 G2L["49"]["Position"] = UDim2.new(0.25, 0, 0.5, 0);
 G2L["49"]["Name"] = [[Circle]];
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Switch.Circle.UICorner
 G2L["4a"] = Instance.new("UICorner", G2L["49"]);
 G2L["4a"]["CornerRadius"] = UDim.new(1, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Switch.Circle.UIAspectRatioConstraint
 G2L["4b"] = Instance.new("UIAspectRatioConstraint", G2L["49"]);
-
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Switch.UIStroke
 G2L["4c"] = Instance.new("UIStroke", G2L["47"]);
@@ -658,11 +577,9 @@ G2L["4c"]["Thickness"] = 1.6;
 G2L["4c"]["Color"] = Color3.fromRGB(51, 51, 51);
 G2L["4c"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Switch.UIAspectRatioConstraint
 G2L["4d"] = Instance.new("UIAspectRatioConstraint", G2L["47"]);
 G2L["4d"]["AspectRatio"] = 2;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Frame
 G2L["4e"] = Instance.new("Frame", G2L["46"]);
@@ -670,7 +587,6 @@ G2L["4e"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 G2L["4e"]["Size"] = UDim2.new(0.34036, 0, 1, 0);
 G2L["4e"]["Position"] = UDim2.new(0.17018, 0, 0.5, 0);
 G2L["4e"]["BackgroundTransparency"] = 1;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Frame.UIListLayout
 G2L["4f"] = Instance.new("UIListLayout", G2L["4e"]);
@@ -680,11 +596,9 @@ G2L["4f"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
 G2L["4f"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
 G2L["4f"]["ItemLineAlignment"] = Enum.ItemLineAlignment.Start;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Frame.UIAspectRatioConstraint
 G2L["50"] = Instance.new("UIAspectRatioConstraint", G2L["4e"]);
 G2L["50"]["AspectRatio"] = 4;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Frame.1Title
 G2L["51"] = Instance.new("TextLabel", G2L["4e"]);
@@ -698,7 +612,6 @@ G2L["51"]["BackgroundTransparency"] = 1;
 G2L["51"]["Size"] = UDim2.new(1, 0, 0.32, 0);
 G2L["51"]["Text"] = [[Example]];
 G2L["51"]["Name"] = [[1Title]];
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.Frame.2Description
 G2L["52"] = Instance.new("TextLabel", G2L["4e"]);
@@ -714,11 +627,9 @@ G2L["52"]["Text"] = [[Lorem ipsum dolor sit amet]];
 G2L["52"]["Name"] = [[2Description]];
 G2L["52"]["Position"] = UDim2.new(0, 0, 0, 20);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Toggle.UIAspectRatioConstraint
 G2L["53"] = Instance.new("UIAspectRatioConstraint", G2L["46"]);
 G2L["53"]["AspectRatio"] = 11;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown
 G2L["54"] = Instance.new("Frame", G2L["22"]);
@@ -728,14 +639,12 @@ G2L["54"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 G2L["54"]["Name"] = [[Dropdown]];
 G2L["54"]["BackgroundTransparency"] = 1;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Frame
 G2L["55"] = Instance.new("Frame", G2L["54"]);
 G2L["55"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 G2L["55"]["Size"] = UDim2.new(0.34036, 0, 1, 0);
 G2L["55"]["Position"] = UDim2.new(0.17018, 0, 0.5, 0);
 G2L["55"]["BackgroundTransparency"] = 1;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Frame.UIListLayout
 G2L["56"] = Instance.new("UIListLayout", G2L["55"]);
@@ -744,7 +653,6 @@ G2L["56"]["Padding"] = UDim.new(0.01, 0);
 G2L["56"]["VerticalAlignment"] = Enum.VerticalAlignment.Center;
 G2L["56"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
 G2L["56"]["ItemLineAlignment"] = Enum.ItemLineAlignment.Start;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Frame.1Title
 G2L["57"] = Instance.new("TextLabel", G2L["55"]);
@@ -758,7 +666,6 @@ G2L["57"]["BackgroundTransparency"] = 1;
 G2L["57"]["Size"] = UDim2.new(1, 0, 0.32, 0);
 G2L["57"]["Text"] = [[Example]];
 G2L["57"]["Name"] = [[1Title]];
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Frame.2Description
 G2L["58"] = Instance.new("TextLabel", G2L["55"]);
@@ -774,11 +681,9 @@ G2L["58"]["Text"] = [[Lorem ipsum dolor sit amet]];
 G2L["58"]["Name"] = [[2Description]];
 G2L["58"]["Position"] = UDim2.new(0, 0, 0, 20);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Frame.UIAspectRatioConstraint
 G2L["59"] = Instance.new("UIAspectRatioConstraint", G2L["55"]);
 G2L["59"]["AspectRatio"] = 4;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button
 G2L["5a"] = Instance.new("TextButton", G2L["54"]);
@@ -796,11 +701,9 @@ G2L["5a"]["Text"] = [[]];
 G2L["5a"]["Name"] = [[Button]];
 G2L["5a"]["Position"] = UDim2.new(0.85487, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.UICorner
 G2L["5b"] = Instance.new("UICorner", G2L["5a"]);
 G2L["5b"]["CornerRadius"] = UDim.new(0, 4);
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.Text
 G2L["5c"] = Instance.new("TextLabel", G2L["5a"]);
@@ -816,13 +719,11 @@ G2L["5c"]["Text"] = [[Hello]];
 G2L["5c"]["Name"] = [[Text]];
 G2L["5c"]["Position"] = UDim2.new(0.4, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.UIStroke
 G2L["5d"] = Instance.new("UIStroke", G2L["5a"]);
 G2L["5d"]["Thickness"] = 1.6;
 G2L["5d"]["Color"] = Color3.fromRGB(51, 51, 51);
 G2L["5d"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.Icon
 G2L["5e"] = Instance.new("ImageLabel", G2L["5a"]);
@@ -838,16 +739,12 @@ G2L["5e"]["ImageRectOffset"] = Vector2.new(798, 0);
 G2L["5e"]["Name"] = [[Icon]];
 G2L["5e"]["Position"] = UDim2.new(0.82, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.Icon.UIAspectRatioConstraint
 G2L["5f"] = Instance.new("UIAspectRatioConstraint", G2L["5e"]);
-
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.UIAspectRatioConstraint
 G2L["60"] = Instance.new("UIAspectRatioConstraint", G2L["5a"]);
 G2L["60"]["AspectRatio"] = 3.61;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame
 G2L["61"] = Instance.new("ScrollingFrame", G2L["5a"]);
@@ -860,19 +757,16 @@ G2L["61"]["ScrollBarImageColor3"] = Color3.fromRGB(61, 61, 61);
 G2L["61"]["Position"] = UDim2.new(0.5, 0, 2.98966, 0);
 G2L["61"]["ScrollBarThickness"] = 4;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.UIListLayout
 G2L["62"] = Instance.new("UIListLayout", G2L["61"]);
 G2L["62"]["Padding"] = UDim.new(0.02, 0);
 G2L["62"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.UIStroke
 G2L["63"] = Instance.new("UIStroke", G2L["61"]);
 G2L["63"]["Thickness"] = 1.6;
 G2L["63"]["Color"] = Color3.fromRGB(51, 51, 51);
 G2L["63"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button
 G2L["64"] = Instance.new("TextButton", G2L["61"]);
@@ -890,11 +784,9 @@ G2L["64"]["Text"] = [[]];
 G2L["64"]["Name"] = [[Button]];
 G2L["64"]["Position"] = UDim2.new(0.85487, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button.UICorner
 G2L["65"] = Instance.new("UICorner", G2L["64"]);
 G2L["65"]["CornerRadius"] = UDim.new(0, 4);
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button.Text
 G2L["66"] = Instance.new("TextLabel", G2L["64"]);
@@ -910,18 +802,15 @@ G2L["66"]["Text"] = [[Example]];
 G2L["66"]["Name"] = [[Text]];
 G2L["66"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button.UIStroke
 G2L["67"] = Instance.new("UIStroke", G2L["64"]);
 G2L["67"]["Thickness"] = 1.6;
 G2L["67"]["Color"] = Color3.fromRGB(51, 51, 51);
 G2L["67"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button.UIAspectRatioConstraint
 G2L["68"] = Instance.new("UIAspectRatioConstraint", G2L["64"]);
 G2L["68"]["AspectRatio"] = 3.42;
-
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.UIPadding
 G2L["69"] = Instance.new("UIPadding", G2L["61"]);
@@ -934,11 +823,9 @@ G2L["69"]["PaddingBottom"] = UDim.new(0.1, 0);
 G2L["6f"] = Instance.new("UIAspectRatioConstraint", G2L["54"]);
 G2L["6f"]["AspectRatio"] = 11;
 
-
 -- StarterGui.AetherUI.Window.UIAspectRatioConstraint
 G2L["70"] = Instance.new("UIAspectRatioConstraint", G2L["2"]);
 G2L["70"]["AspectRatio"] = 1.45;
-
 
 -- StarterGui.AetherUI.Window.Drag
 G2L["71"] = Instance.new("Frame", G2L["2"]);
@@ -952,19 +839,21 @@ G2L["71"]["Name"] = [[Drag]];
 G2L["71"]["BackgroundTransparency"] = 1;
 
 -- ============================================
--- AETHERUI LIBRARY SYSTEM
+-- AETHERUI LIBRARY SYSTEM (ENHANCED)
 -- ============================================
 
 local AetherUI = {}
 AetherUI.__index = AetherUI
 
 local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 -- Internal references
 local ScreenGui, Window, Main, ScrollingFrame, TabsContainer, DragFrame
 local Templates = {}
+local TabSystem = {Current = nil, Tabs = {}, ContentContainer = nil}
 
 local function InitRefs()
     ScreenGui = G2L["1"]
@@ -987,6 +876,9 @@ local function InitRefs()
             t.Visible = false
         end
     end
+    
+    -- Setup tab content container
+    TabSystem.ContentContainer = ScrollingFrame
 end
 
 function AetherUI.new(cfg)
@@ -1049,7 +941,7 @@ function AetherUI:AddLabel(cfg)
     cfg = cfg or {}
     local el = Templates.Label:Clone()
     el.Visible = true
-    el.Parent = ScrollingFrame
+    el.Parent = TabSystem.ContentContainer
     if cfg.Title and el:FindFirstChild("Title") then el.Title.Text = tostring(cfg.Title) end
     table.insert(self._elements, el)
     return el
@@ -1059,7 +951,7 @@ function AetherUI:AddButton(cfg)
     cfg = cfg or {}
     local el = Templates.Button:Clone()
     el.Visible = true
-    el.Parent = ScrollingFrame
+    el.Parent = TabSystem.ContentContainer
     
     local frame = el:WaitForChild("Frame")
     local title = frame:WaitForChild("1Title")
@@ -1083,14 +975,12 @@ function AetherUI:AddSlider(cfg)
     cfg = cfg or {}
     local el = Templates.Slider:Clone()
     el.Visible = true
-    el.Parent = ScrollingFrame
+    el.Parent = TabSystem.ContentContainer
     
     local frame = el:WaitForChild("Frame")
     local title = frame:WaitForChild("1Title")
     local desc = frame:WaitForChild("2Description")
-    
-    -- FIX: Only ONE "Slider" child exists inside the template container
-    local sliderBar = el:WaitForChild("Slider")  -- G2L["37"] - the actual bar
+    local sliderBar = el:WaitForChild("Slider")
     local sliderVal = sliderBar:WaitForChild("Value")
     local sliderCircle = sliderBar:WaitForChild("Circle")
     
@@ -1152,7 +1042,7 @@ function AetherUI:AddToggle(cfg)
     cfg = cfg or {}
     local el = Templates.Toggle:Clone()
     el.Visible = true
-    el.Parent = ScrollingFrame
+    el.Parent = TabSystem.ContentContainer
     
     local frame = el:WaitForChild("Frame")
     local title = frame:WaitForChild("1Title")
@@ -1165,30 +1055,42 @@ function AetherUI:AddToggle(cfg)
     
     local state = cfg.Default or false
     
-    local function update(s)
+    --  SMOOTH TOGGLE ANIMATION
+    local function update(s, animate)
         state = s
-        circle.Position = UDim2.new(s and 0.75 or 0.25, 0, 0.5, 0)
-        sw.BackgroundColor3 = s and Color3.fromRGB(0,123,255) or Color3.fromRGB(36,36,36)
+        local targetPos = UDim2.new(s and 0.75 or 0.25, 0, 0.5, 0)
+        local targetColor = s and Color3.fromRGB(0,123,255) or Color3.fromRGB(36,36,36)
+        
+        if animate ~= false then
+            -- Tween circle position
+            TweenService:Create(circle, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = targetPos}):Play()
+            -- Tween switch background color
+            TweenService:Create(sw, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = targetColor}):Play()
+        else
+            circle.Position = targetPos
+            sw.BackgroundColor3 = targetColor
+        end
+        
         if cfg.Callback then cfg.Callback(s) end
     end
     
-    update(state)
+    update(state, false) -- Initial state without animation
     
     sw.InputBegan:Connect(function(inp)
         if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then
-            update(not state)
+            update(not state, true) -- Animate on user interaction
         end
     end)
     
     table.insert(self._elements, el)
-    return el, function(v) if v ~= nil then update(v) end return state end
+    return el, function(v) if v ~= nil then update(v, true) end return state end
 end
 
 function AetherUI:AddDropdown(cfg)
     cfg = cfg or {}
     local el = Templates.Dropdown:Clone()
     el.Visible = true
-    el.Parent = ScrollingFrame
+    el.Parent = TabSystem.ContentContainer
     
     local frame = el:WaitForChild("Frame")
     local title = frame:WaitForChild("1Title")
@@ -1214,6 +1116,11 @@ function AetherUI:AddDropdown(cfg)
     local function updateIcon(open)
         icon.ImageRectOffset = open and RECT_OPENED or RECT_CLOSED
     end
+    
+    --  DROPDOWN STARTS CLOSED (ensure initial state)
+    list.Visible = false
+    updateIcon(false)
+    btn.Size = UDim2.new(0.23027, 0, 0.7, 0)
     
     -- Setup options from template
     local optTpl = list:WaitForChild("Button")
@@ -1244,6 +1151,123 @@ function AetherUI:AddDropdown(cfg)
     
     table.insert(self._elements, el)
     return el, function() return selected end
+end
+
+--  NEW: TAB SYSTEM
+function AetherUI:AddTab(cfg)
+    cfg = cfg or {}
+    local tabName = cfg.Name or "Tab"
+    local iconId = cfg.Icon or "rbxassetid://16884179038"
+    
+    -- Clone tab button template
+    local tabBtn = Templates.Tab:Clone()
+    tabBtn.Visible = true
+    tabBtn.Parent = TabsContainer
+    
+    local btn = tabBtn:WaitForChild("Button")
+    local title = tabBtn:WaitForChild("Title")
+    local icon = tabBtn:WaitForChild("Icon")
+    
+    title.Text = tabName
+    icon.Image = iconId
+    
+    -- Create content container for this tab
+    local contentFrame = Instance.new("Frame")
+    contentFrame.Name = "TabContent_" .. tabName
+    contentFrame.BackgroundTransparency = 1
+    contentFrame.Size = UDim2.new(1, 0, 1, 0)
+    contentFrame.Visible = false
+    contentFrame.Parent = TabSystem.ContentContainer
+    
+    -- Layout for tab content
+    local layout = Instance.new("UIListLayout", contentFrame)
+    layout.Padding = UDim.new(0.02, 0)
+    layout.SortOrder = Enum.SortOrder.LayoutOrder
+    
+    local padding = Instance.new("UIPadding", contentFrame)
+    padding.PaddingTop = UDim.new(0.025, 0)
+    padding.PaddingRight = UDim.new(0.05, 0)
+    padding.PaddingBottom = UDim.new(0.1, 0)
+    
+    -- Store tab data
+    local tabData = {
+        Button = tabBtn,
+        Content = contentFrame,
+        Elements = {}
+    }
+    
+    --  SMOOTH TAB SWITCHING
+    local function activateTab()
+        -- Fade out current tab content
+        if TabSystem.Current and TabSystem.Current.Content then
+            TweenService:Create(TabSystem.Current.Content, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
+            TabSystem.Current.Content.Visible = false
+            -- Reset active state on old tab button
+            local oldBtn = TabSystem.Current.Button:WaitForChild("Button")
+            oldBtn.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+        end
+        
+        -- Show new tab content with fade
+        contentFrame.Visible = true
+        contentFrame.BackgroundTransparency = 1
+        TweenService:Create(contentFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+        
+        -- Highlight active tab button
+        btn.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        
+        TabSystem.Current = tabData
+    end
+    
+    -- Click handler
+    btn.MouseButton1Click:Connect(activateTab)
+    
+    -- Auto-activate first tab
+    if not TabSystem.Current then
+        activateTab()
+    end
+    
+    -- Return API for adding elements to this tab
+    local tabAPI = {}
+    
+    function tabAPI:AddLabel(c) return self:Add("Label", c) end
+    function tabAPI:AddButton(c) return self:Add("Button", c) end
+    function tabAPI:AddSlider(c) return self:Add("Slider", c) end
+    function tabAPI:AddToggle(c) return self:Add("Toggle", c) end
+    function tabAPI:AddDropdown(c) return self:Add("Dropdown", c) end
+    
+    function tabAPI:Add(type, config)
+        config = config or {}
+        local el
+        if type == "Label" then
+            el = Templates.Label:Clone()
+            el.Visible = true
+            el.Parent = contentFrame
+            if config.Title and el:FindFirstChild("Title") then el.Title.Text = tostring(config.Title) end
+        elseif type == "Button" then
+            el = Templates.Button:Clone()
+            el.Visible = true
+            el.Parent = contentFrame
+            local frame = el:WaitForChild("Frame")
+            if config.Title then frame:WaitForChild("1Title").Text = tostring(config.Title) end
+            if config.Description then frame:WaitForChild("2Description").Text = tostring(config.Description) end
+            if config.ButtonText then el:WaitForChild("Button"):WaitForChild("Text").Text = tostring(config.ButtonText) end
+            if config.Callback then
+                el:WaitForChild("Button").MouseButton1Click:Connect(function() config.Callback() end)
+            end
+        elseif type == "Slider" then
+            -- Simplified slider for tabs (reuse main AddSlider logic)
+            el = self:AddSlider(config)
+        elseif type == "Toggle" then
+            el = self:AddToggle(config)
+        elseif type == "Dropdown" then
+            el = self:AddDropdown(config)
+        end
+        if el then table.insert(tabData.Elements, el) end
+        return el
+    end
+    
+    table.insert(TabSystem.Tabs, tabData)
+    return tabAPI
 end
 
 function AetherUI:Destroy()
