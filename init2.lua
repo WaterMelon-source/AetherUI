@@ -1138,8 +1138,9 @@ function AetherUI:AddSlider(cfg)
     local frame = el:WaitForChild("Frame")
     local title = frame:WaitForChild("1Title")
     local desc = frame:WaitForChild("2Description")
-    local sliderCont = el:WaitForChild("Slider")
-    local sliderBar = sliderCont:WaitForChild("Slider")
+    
+    -- FIX: Only ONE "Slider" child exists inside the template container
+    local sliderBar = el:WaitForChild("Slider")  -- G2L["37"] - the actual bar
     local sliderVal = sliderBar:WaitForChild("Value")
     local sliderCircle = sliderBar:WaitForChild("Circle")
     
@@ -1168,7 +1169,8 @@ function AetherUI:AddSlider(cfg)
     
     local dragging = false
     local function handle(inp)
-        local pos, size = sliderBar.AbsolutePosition.x, sliderBar.AbsoluteSize.x
+        local pos = sliderBar.AbsolutePosition.x
+        local size = sliderBar.AbsoluteSize.x
         local pct = math.clamp((inp.Position.x - pos) / size, 0, 1)
         update(min + (max - min) * pct)
     end
