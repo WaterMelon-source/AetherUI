@@ -274,7 +274,7 @@ G2L["22"]["Size"] = UDim2.new(0.97246, 0, 0.86448, 0);
 G2L["22"]["ScrollBarImageColor3"] = Color3.fromRGB(61, 61, 61);
 G2L["22"]["Position"] = UDim2.new(0.53623, 0, 0.54276, 0);
 G2L["22"]["ScrollBarThickness"] = 4;
-G2L["22"]["BackgroundTransparency"] = 1;
+G2L["22"]["BackgroundTransparency"] = 1; -- ✅ ALWAYS 1
 
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.UIListLayout
 G2L["23"] = Instance.new("UIListLayout", G2L["22"]);
@@ -839,7 +839,7 @@ G2L["71"]["Name"] = [[Drag]];
 G2L["71"]["BackgroundTransparency"] = 1;
 
 -- ============================================
--- AETHERUI LIBRARY SYSTEM (ENHANCED)
+-- AETHERUI LIBRARY SYSTEM (FINAL FIXED VERSION)
 -- ============================================
 
 local AetherUI = {}
@@ -853,7 +853,7 @@ local LocalPlayer = Players.LocalPlayer
 -- Internal references
 local ScreenGui, Window, Main, ScrollingFrame, TabsContainer, DragFrame
 local Templates = {}
-local TabSystem = {Current = nil, Tabs = {}, ContentContainer = nil}
+local TabSystem = {Current = nil, Tabs = {}}
 
 local function InitRefs()
     ScreenGui = G2L["1"]
@@ -876,9 +876,6 @@ local function InitRefs()
             t.Visible = false
         end
     end
-    
-    -- Setup tab content container
-    TabSystem.ContentContainer = ScrollingFrame
 end
 
 function AetherUI.new(cfg)
@@ -937,11 +934,30 @@ function AetherUI:_setupDrag()
     end)
 end
 
+-- ✅ HELPER: Create content container for tab elements
+local function createContentContainer()
+    local container = Instance.new("Frame")
+    container.BackgroundTransparency = 1
+    container.Size = UDim2.new(1, 0, 1, 0)
+    container.Visible = false
+    
+    local layout = Instance.new("UIListLayout", container)
+    layout.Padding = UDim.new(0.02, 0)
+    layout.SortOrder = Enum.SortOrder.LayoutOrder
+    
+    local padding = Instance.new("UIPadding", container)
+    padding.PaddingTop = UDim.new(0.025, 0)
+    padding.PaddingRight = UDim.new(0.05, 0)
+    padding.PaddingBottom = UDim.new(0.1, 0)
+    
+    return container
+end
+
 function AetherUI:AddLabel(cfg)
     cfg = cfg or {}
     local el = Templates.Label:Clone()
     el.Visible = true
-    el.Parent = TabSystem.ContentContainer
+    el.Parent = ScrollingFrame
     if cfg.Title and el:FindFirstChild("Title") then el.Title.Text = tostring(cfg.Title) end
     table.insert(self._elements, el)
     return el
@@ -951,7 +967,7 @@ function AetherUI:AddButton(cfg)
     cfg = cfg or {}
     local el = Templates.Button:Clone()
     el.Visible = true
-    el.Parent = TabSystem.ContentContainer
+    el.Parent = ScrollingFrame
     
     local frame = el:WaitForChild("Frame")
     local title = frame:WaitForChild("1Title")
@@ -975,11 +991,13 @@ function AetherUI:AddSlider(cfg)
     cfg = cfg or {}
     local el = Templates.Slider:Clone()
     el.Visible = true
-    el.Parent = TabSystem.ContentContainer
+    el.Parent = ScrollingFrame
     
     local frame = el:WaitForChild("Frame")
     local title = frame:WaitForChild("1Title")
     local desc = frame:WaitForChild("2Description")
+    
+    -- ✅ FIXED: Correct path - Slider template has ONE "Slider" child (G2L["37"])
     local sliderBar = el:WaitForChild("Slider")
     local sliderVal = sliderBar:WaitForChild("Value")
     local sliderCircle = sliderBar:WaitForChild("Circle")
@@ -1042,7 +1060,7 @@ function AetherUI:AddToggle(cfg)
     cfg = cfg or {}
     local el = Templates.Toggle:Clone()
     el.Visible = true
-    el.Parent = TabSystem.ContentContainer
+    el.Parent = ScrollingFrame
     
     local frame = el:WaitForChild("Frame")
     local title = frame:WaitForChild("1Title")
@@ -1055,16 +1073,14 @@ function AetherUI:AddToggle(cfg)
     
     local state = cfg.Default or false
     
-    --  SMOOTH TOGGLE ANIMATION
+    -- ✅ SMOOTH TOGGLE ANIMATION
     local function update(s, animate)
         state = s
         local targetPos = UDim2.new(s and 0.75 or 0.25, 0, 0.5, 0)
         local targetColor = s and Color3.fromRGB(0,123,255) or Color3.fromRGB(36,36,36)
         
         if animate ~= false then
-            -- Tween circle position
             TweenService:Create(circle, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position = targetPos}):Play()
-            -- Tween switch background color
             TweenService:Create(sw, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = targetColor}):Play()
         else
             circle.Position = targetPos
@@ -1074,11 +1090,11 @@ function AetherUI:AddToggle(cfg)
         if cfg.Callback then cfg.Callback(s) end
     end
     
-    update(state, false) -- Initial state without animation
+    update(state, false)
     
     sw.InputBegan:Connect(function(inp)
         if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then
-            update(not state, true) -- Animate on user interaction
+            update(not state, true)
         end
     end)
     
@@ -1090,7 +1106,7 @@ function AetherUI:AddDropdown(cfg)
     cfg = cfg or {}
     local el = Templates.Dropdown:Clone()
     el.Visible = true
-    el.Parent = TabSystem.ContentContainer
+    el.Parent = ScrollingFrame
     
     local frame = el:WaitForChild("Frame")
     local title = frame:WaitForChild("1Title")
@@ -1109,7 +1125,6 @@ function AetherUI:AddDropdown(cfg)
     
     btnTxt.Text = selected
     
-    -- Icon state handling via ImageRectOffset (sprite sheet)
     local RECT_CLOSED = Vector2.new(798, 0)
     local RECT_OPENED = Vector2.new(798, 108)
     
@@ -1117,12 +1132,11 @@ function AetherUI:AddDropdown(cfg)
         icon.ImageRectOffset = open and RECT_OPENED or RECT_CLOSED
     end
     
-    --  DROPDOWN STARTS CLOSED (ensure initial state)
+    -- ✅ DROPDOWN STARTS CLOSED
     list.Visible = false
     updateIcon(false)
     btn.Size = UDim2.new(0.23027, 0, 0.7, 0)
     
-    -- Setup options from template
     local optTpl = list:WaitForChild("Button")
     optTpl.Visible = false
     
@@ -1153,7 +1167,7 @@ function AetherUI:AddDropdown(cfg)
     return el, function() return selected end
 end
 
---  NEW: TAB SYSTEM
+-- ✅ TAB SYSTEM: BackgroundTransparency switching (0=active, 1=inactive)
 function AetherUI:AddTab(cfg)
     cfg = cfg or {}
     local tabName = cfg.Name or "Tab"
@@ -1171,23 +1185,9 @@ function AetherUI:AddTab(cfg)
     title.Text = tabName
     icon.Image = iconId
     
-    -- Create content container for this tab
-    local contentFrame = Instance.new("Frame")
-    contentFrame.Name = "TabContent_" .. tabName
-    contentFrame.BackgroundTransparency = 1
-    contentFrame.Size = UDim2.new(1, 0, 1, 0)
-    contentFrame.Visible = false
-    contentFrame.Parent = TabSystem.ContentContainer
-    
-    -- Layout for tab content
-    local layout = Instance.new("UIListLayout", contentFrame)
-    layout.Padding = UDim.new(0.02, 0)
-    layout.SortOrder = Enum.SortOrder.LayoutOrder
-    
-    local padding = Instance.new("UIPadding", contentFrame)
-    padding.PaddingTop = UDim.new(0.025, 0)
-    padding.PaddingRight = UDim.new(0.05, 0)
-    padding.PaddingBottom = UDim.new(0.1, 0)
+    -- ✅ Create content container for this tab (inside ScrollingFrame)
+    local contentFrame = createContentContainer()
+    contentFrame.Parent = ScrollingFrame
     
     -- Store tab data
     local tabData = {
@@ -1196,24 +1196,21 @@ function AetherUI:AddTab(cfg)
         Elements = {}
     }
     
-    --  SMOOTH TAB SWITCHING
+    -- ✅ TAB SWITCHING: BackgroundTransparency method
     local function activateTab()
-        -- Fade out current tab content
-        if TabSystem.Current and TabSystem.Current.Content then
-            TweenService:Create(TabSystem.Current.Content, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
+        -- Deactivate previous tab
+        if TabSystem.Current and TabSystem.Current.Button then
+            -- Set old tab button to inactive (BackgroundTransparency = 1)
+            TabSystem.Current.Button.BackgroundTransparency = 1
+            -- Hide old content
             TabSystem.Current.Content.Visible = false
-            -- Reset active state on old tab button
-            local oldBtn = TabSystem.Current.Button:WaitForChild("Button")
-            oldBtn.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
         end
         
-        -- Show new tab content with fade
+        -- Activate new tab
+        -- Set new tab button to active (BackgroundTransparency = 0)
+        tabBtn.BackgroundTransparency = 0
+        -- Show new content
         contentFrame.Visible = true
-        contentFrame.BackgroundTransparency = 1
-        TweenService:Create(contentFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-        
-        -- Highlight active tab button
-        btn.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
         
         TabSystem.Current = tabData
     end
@@ -1223,30 +1220,37 @@ function AetherUI:AddTab(cfg)
     
     -- Auto-activate first tab
     if not TabSystem.Current then
-        activateTab()
+        -- Set initial state: first tab active (0), others will be 1 when created
+        tabBtn.BackgroundTransparency = 0
+        contentFrame.Visible = true
+        TabSystem.Current = tabData
+    else
+        -- Non-first tabs start inactive
+        tabBtn.BackgroundTransparency = 1
+        contentFrame.Visible = false
     end
     
     -- Return API for adding elements to this tab
     local tabAPI = {}
     
-    function tabAPI:AddLabel(c) return self:Add("Label", c) end
-    function tabAPI:AddButton(c) return self:Add("Button", c) end
-    function tabAPI:AddSlider(c) return self:Add("Slider", c) end
-    function tabAPI:AddToggle(c) return self:Add("Toggle", c) end
-    function tabAPI:AddDropdown(c) return self:Add("Dropdown", c) end
+    function tabAPI:AddLabel(c) return self:_addElement("Label", c, contentFrame) end
+    function tabAPI:AddButton(c) return self:_addElement("Button", c, contentFrame) end
+    function tabAPI:AddSlider(c) return self:_addElement("Slider", c, contentFrame) end
+    function tabAPI:AddToggle(c) return self:_addElement("Toggle", c, contentFrame) end
+    function tabAPI:AddDropdown(c) return self:_addElement("Dropdown", c, contentFrame) end
     
-    function tabAPI:Add(type, config)
+    function tabAPI:_addElement(type, config, parent)
         config = config or {}
         local el
         if type == "Label" then
             el = Templates.Label:Clone()
             el.Visible = true
-            el.Parent = contentFrame
+            el.Parent = parent
             if config.Title and el:FindFirstChild("Title") then el.Title.Text = tostring(config.Title) end
         elseif type == "Button" then
             el = Templates.Button:Clone()
             el.Visible = true
-            el.Parent = contentFrame
+            el.Parent = parent
             local frame = el:WaitForChild("Frame")
             if config.Title then frame:WaitForChild("1Title").Text = tostring(config.Title) end
             if config.Description then frame:WaitForChild("2Description").Text = tostring(config.Description) end
@@ -1255,12 +1259,152 @@ function AetherUI:AddTab(cfg)
                 el:WaitForChild("Button").MouseButton1Click:Connect(function() config.Callback() end)
             end
         elseif type == "Slider" then
-            -- Simplified slider for tabs (reuse main AddSlider logic)
-            el = self:AddSlider(config)
+            el = Templates.Slider:Clone()
+            el.Visible = true
+            el.Parent = parent
+            local frame = el:WaitForChild("Frame")
+            local sliderBar = el:WaitForChild("Slider")
+            local sliderVal = sliderBar:WaitForChild("Value")
+            local sliderCircle = sliderBar:WaitForChild("Circle")
+            
+            if config.Title then frame:WaitForChild("1Title").Text = tostring(config.Title) end
+            if config.Description then frame:WaitForChild("2Description").Text = tostring(config.Description) end
+            
+            local min, max = config.Min or 0, config.Max or 100
+            local rounding = config.Rounding or 1
+            local default = config.Default or min
+            
+            local function round(n)
+                local m = 10^(rounding or 0)
+                return math.floor(n * m + 0.5) / m
+            end
+            
+            local function update(val)
+                val = math.clamp(val, min, max)
+                val = round(val)
+                local pct = (val - min) / (max - min)
+                sliderVal.Size = UDim2.new(pct, 0, 1, 0)
+                sliderCircle.Position = UDim2.new(pct, 0, 0.5, 0)
+                if config.Callback then config.Callback(val) end
+            end
+            
+            update(default)
+            
+            local dragging = false
+            local function handle(inp)
+                local pos = sliderBar.AbsolutePosition.x
+                local size = sliderBar.AbsoluteSize.x
+                local pct = math.clamp((inp.Position.x - pos) / size, 0, 1)
+                update(min + (max - min) * pct)
+            end
+            
+            sliderBar.InputBegan:Connect(function(inp)
+                if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then
+                    dragging = true
+                    handle(inp)
+                end
+            end)
+            
+            sliderBar.InputChanged:Connect(function(inp)
+                if dragging and (inp.UserInputType == Enum.UserInputType.MouseMovement or inp.UserInputType == Enum.UserInputType.Touch) then
+                    handle(inp)
+                end
+            end)
+            
+            UserInputService.InputEnded:Connect(function(inp)
+                if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then
+                    dragging = false
+                end
+            end)
+            
+            return el, update
         elseif type == "Toggle" then
-            el = self:AddToggle(config)
+            el = Templates.Toggle:Clone()
+            el.Visible = true
+            el.Parent = parent
+            local frame = el:WaitForChild("Frame")
+            local sw = el:WaitForChild("Switch")
+            local circle = sw:WaitForChild("Circle")
+            
+            if config.Title then frame:WaitForChild("1Title").Text = tostring(config.Title) end
+            if config.Description then frame:WaitForChild("2Description").Text = tostring(config.Description) end
+            
+            local state = config.Default or false
+            local function update(s, animate)
+                state = s
+                local targetPos = UDim2.new(s and 0.75 or 0.25, 0, 0.5, 0)
+                local targetColor = s and Color3.fromRGB(0,123,255) or Color3.fromRGB(36,36,36)
+                if animate ~= false then
+                    TweenService:Create(circle, TweenInfo.new(0.15, Enum.EasingStyle.Quad), {Position = targetPos}):Play()
+                    TweenService:Create(sw, TweenInfo.new(0.15, Enum.EasingStyle.Quad), {BackgroundColor3 = targetColor}):Play()
+                else
+                    circle.Position = targetPos
+                    sw.BackgroundColor3 = targetColor
+                end
+                if config.Callback then config.Callback(s) end
+            end
+            update(state, false)
+            sw.InputBegan:Connect(function(inp)
+                if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then
+                    update(not state, true)
+                end
+            end)
+            return el, function(v) if v ~= nil then update(v, true) end return state end
         elseif type == "Dropdown" then
-            el = self:AddDropdown(config)
+            el = Templates.Dropdown:Clone()
+            el.Visible = true
+            el.Parent = parent
+            local frame = el:WaitForChild("Frame")
+            local btn = el:WaitForChild("Button")
+            local btnTxt = btn:WaitForChild("Text")
+            local icon = btn:WaitForChild("Icon")
+            local list = btn:WaitForChild("ScrollingFrame")
+            
+            if config.Title then frame:WaitForChild("1Title").Text = tostring(config.Title) end
+            if config.Description then frame:WaitForChild("2Description").Text = tostring(config.Description) end
+            
+            local options = config.Options or {}
+            local selected = config.Default or options[1] or "Select..."
+            local opened = false
+            btnTxt.Text = selected
+            
+            local RECT_CLOSED = Vector2.new(798, 0)
+            local RECT_OPENED = Vector2.new(798, 108)
+            local function updateIcon(open)
+                icon.ImageRectOffset = open and RECT_OPENED or RECT_CLOSED
+            end
+            
+            list.Visible = false
+            updateIcon(false)
+            btn.Size = UDim2.new(0.23027, 0, 0.7, 0)
+            
+            local optTpl = list:WaitForChild("Button")
+            optTpl.Visible = false
+            
+            for _, opt in ipairs(options) do
+                local ob = optTpl:Clone()
+                ob.Visible = true
+                ob.Parent = list
+                ob:WaitForChild("Text").Text = tostring(opt)
+                ob.MouseButton1Click:Connect(function()
+                    selected = opt
+                    btnTxt.Text = opt
+                    opened = false
+                    updateIcon(false)
+                    list.Visible = false
+                    btn.Size = UDim2.new(0.23027, 0, 0.7, 0)
+                    if config.Callback then config.Callback(opt) end
+                end)
+            end
+            
+            btn.MouseButton1Click:Connect(function()
+                opened = not opened
+                updateIcon(opened)
+                list.Visible = opened
+                btn.Size = opened and UDim2.new(0.23027, 0, 3.47932, 0) or UDim2.new(0.23027, 0, 0.7, 0)
+            end)
+            
+            return el, function() return selected end
         end
         if el then table.insert(tabData.Elements, el) end
         return el
