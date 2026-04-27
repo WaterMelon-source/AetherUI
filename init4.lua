@@ -930,56 +930,6 @@ G2L["69"]["PaddingRight"] = UDim.new(0.05, 0);
 G2L["69"]["PaddingLeft"] = UDim.new(0.1, 0);
 G2L["69"]["PaddingBottom"] = UDim.new(0.1, 0);
 
-
--- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button
-G2L["6a"] = Instance.new("TextButton", G2L["61"]);
-G2L["6a"]["TextWrapped"] = true;
-G2L["6a"]["BorderSizePixel"] = 0;
-G2L["6a"]["TextSize"] = 12;
-G2L["6a"]["AutoButtonColor"] = false;
-G2L["6a"]["TextScaled"] = true;
-G2L["6a"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["6a"]["BackgroundColor3"] = Color3.fromRGB(36, 36, 36);
-G2L["6a"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-G2L["6a"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["6a"]["Size"] = UDim2.new(0.9, 0, 0.05, 0);
-G2L["6a"]["Text"] = [[]];
-G2L["6a"]["Name"] = [[Button]];
-G2L["6a"]["Position"] = UDim2.new(0.85487, 0, 0.5, 0);
-
-
--- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button.UICorner
-G2L["6b"] = Instance.new("UICorner", G2L["6a"]);
-G2L["6b"]["CornerRadius"] = UDim.new(0, 4);
-
-
--- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button.Text
-G2L["6c"] = Instance.new("TextLabel", G2L["6a"]);
-G2L["6c"]["TextWrapped"] = true;
-G2L["6c"]["TextSize"] = 12;
-G2L["6c"]["TextScaled"] = true;
-G2L["6c"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-G2L["6c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["6c"]["BackgroundTransparency"] = 1;
-G2L["6c"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["6c"]["Size"] = UDim2.new(0.6, 0, 0.8, 0);
-G2L["6c"]["Text"] = [[Example]];
-G2L["6c"]["Name"] = [[Text]];
-G2L["6c"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
-
-
--- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button.UIStroke
-G2L["6d"] = Instance.new("UIStroke", G2L["6a"]);
-G2L["6d"]["Thickness"] = 1.6;
-G2L["6d"]["Color"] = Color3.fromRGB(51, 51, 51);
-G2L["6d"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-
-
--- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.Button.ScrollingFrame.Button.UIAspectRatioConstraint
-G2L["6e"] = Instance.new("UIAspectRatioConstraint", G2L["6a"]);
-G2L["6e"]["AspectRatio"] = 3.42;
-
-
 -- StarterGui.AetherUI.Window.Main.ScrollingFrame.Dropdown.UIAspectRatioConstraint
 G2L["6f"] = Instance.new("UIAspectRatioConstraint", G2L["54"]);
 G2L["6f"]["AspectRatio"] = 11;
